@@ -140,4 +140,4 @@ Twitter Streaming API: [Twitter Streaming API](https://dev.twitter.com/streaming
 
 Twitter Library (Anaconda): [Anaconda](https://github.com/ChimeraCoder/anaconda)
 
-LRU (a concurrent-access safe version was made): From [groupcache](https://github.com/golang/groupcache)
+LRU (a concurrent-access safe version was made, but wandered off on a disk somewhere): From [groupcache](https://github.com/golang/groupcache)
