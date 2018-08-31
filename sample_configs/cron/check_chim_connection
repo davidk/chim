@@ -1,0 +1,4 @@
+# cron to periodically check that chim is still connected to twitter
+# restarts us if we aren't
+
+*/5 * * * * if [[ $(sudo ss -tp | grep chim | wc -l) -lt 1 ]]; then sudo systemctl restart chim.service; fi

@@ -1,0 +1,23 @@
+{
+  "consumer_key": "",
+  "consumer_secret": "",
+  "access_token": "",
+  "access_token_secret": "",
+  "search_terms": "#hashtags,topic name,#more_hashbrowns,#browns",
+  "watch_users": "user1,user2,user3",
+  "logrus_level": "info",
+  "test_mode": true,
+  "settings": {
+    "must_follow": "aCertainUser",
+    "ignore_from": "chim",
+    "post_time_delta": 5,
+    "delta_gated_content_time_seconds": "",
+    "delta_gated_content": "",
+    "deny_sensitive_content": true
+    "min_account_age_hours": "",
+    "mutual_follow": "",
+    "prohibited_mentions": "",
+    "prohibited_words": "",
+    "twitter_filter_level": "",
+  }
+}

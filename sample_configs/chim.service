@@ -1,0 +1,23 @@
+# Installation (as root):
+# mkdir -p /usr/local/chim/
+# cp chim /usr/local/chim
+# cp config.json /usr/local/chim
+# cp chim.service /etc/systemd/system/
+# chmod 664 /etc/systemd/system/chim.service
+# systemctl daemon-reload
+# systemctl enable chim.service
+# systemctl start chim.service
+
+# To get STDOUT/IN data, run the following:
+# sudo journalctl -u chim
+[Unit]
+Description=chim Twitter Robot - Standalone
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/local/chim/chim -c /usr/local/chim/config.json
+
+[Install]
+WantedBy=multi-user.target
