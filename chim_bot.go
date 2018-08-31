@@ -5,7 +5,7 @@ import (
 	"flag"
 	"github.com/ChimeraCoder/anaconda"
 	"github.com/davidk/memberset"
-	"github.com/golang/groupcache/lru"
+	"github.com/davidk/lru"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	log "github.com/sirupsen/logrus"

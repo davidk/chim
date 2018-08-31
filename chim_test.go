@@ -4,7 +4,7 @@ import (
 	"errors"
 	"github.com/ChimeraCoder/anaconda"
 	"github.com/davidk/memberset"
-	"github.com/golang/groupcache/lru"
+	"github.com/davidk/lru"
 	"net/url"
 	"strings"
 	"testing"
