@@ -1,6 +1,6 @@
 # Chim
 
-This was a Golang-based Twitter bot designed for re-tweeting gifs and videos out of multiple users' streams / search terms. It was mostly used for quickly collecting/centralizing/archiving community gif/video clippings and contributions onto one account.
+This was a Golang-based Twitter bot designed for re-tweeting gifs and videos out of twitter's streaming API, given a set of search terms and hashtags. It was mostly used for quickly collecting/centralizing/archiving community gif/video clippings and contributions onto one account.
 
 As of this bot's public release, it has been in quiet, near-continous operation for over two years; re-tweeting videos and gifs over 9,000 times.
 
@@ -21,6 +21,8 @@ There were some sacrifices that were made for this:
 * Only top-posted ("sent out to my followers") tweets with gifs / videos were checked. Replies were ignored.
 
 * The bot did not inspect the actual text/gif/video's contents.
+
+* Expensive/rate-limited calls were cached (to prevent rate-limiting/stalls during large events).
 
 # Trust Model
 
