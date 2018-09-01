@@ -79,6 +79,8 @@ The bot requires a configuration file (named `config.json`) with the following s
 }
 ```
 
+Note: `"test_mode": true` will run all filtering, but refuse to actually retweet any matching content.
+
 Documentation for the options and a working example can be found here: [config.json.md](config.json.md).
 
 # Building/Compiling
@@ -89,7 +91,7 @@ go get -v github.com/davidk/chim
 or for isolated development purposes (so it doesn't blow up your regular GOPATH):
 
 ```
-# Clone this into your GOPATH
+# Clone this into a temporary "GOPATH"
 # EX: 
 $ mkdir -p /dev/shm/chim/src/github.com/davidk/
 $ cd /dev/shm/chim/src/github.com/davidk/
@@ -132,7 +134,7 @@ be done on-demand/hot.
 
 * Quality detection with ML/AI/DL
 
-# Libraries used to implement this bot
+# Main libraries and references used to implement this bot
 
 Language: [golang](https://golang.org/)
 
@@ -140,4 +142,4 @@ Twitter Streaming API: [Twitter Streaming API](https://dev.twitter.com/streaming
 
 Twitter Library (Anaconda): [Anaconda](https://github.com/ChimeraCoder/anaconda)
 
-LRU (a concurrent-access safe version was made, but wandered off on a disk somewhere): From [groupcache](https://github.com/golang/groupcache)
+LRU (a concurrent-access safe version was made, derived from) [groupcache](https://github.com/golang/groupcache)
