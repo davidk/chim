@@ -14,27 +14,44 @@ This bot was originally designed to be low maintenance and to run efficiently/re
 
 There were some sacrifices that were made for this:
 
-* No significant state (aside from the config) was kept on disk (to preserve flash program/erase cycles); everything was cached in memory.
+* No significant state (aside from the config) was kept on disk (to preserve flash program/erase cycles)
 
 * Checks were mostly rules/rate-based.
 
-* Only top-posted ("sent out to my followers") tweets with gifs / videos were checked. Replies were ignored.
+* Only top-posted, relevant ("sent out to my followers") tweets with gifs / videos were checked. Replies and threads were ignored.
 
-* The bot did not inspect the actual text/gif/video's contents.
+* The bot did not deeply inspect the actual text/gif/video's contents.
 
-* Expensive/rate-limited calls were cached (to prevent rate-limiting/stalls during large events).
+* Expensive/rate-limited calls were aggressively cached (to prevent rate-limiting/stalls during large events).
 
 # Trust Model
 
-With the above limitations, this bot used a mutual follow trust model; this allows the target of any content to transparently choose (by following the source) whose content is retweeted.
+With the above limitations, this bot used a mutual follow trust model; this allowed the target of any content to transparently choose (by following the source) whose content was retweeted.
 
-This model continues to work well for the community that the bot was a part of, but it may not work for yours.
+This model worked well for the community that the bot was a part of, but it may not work for yours.
+
+# Building/Compiling
+
+```
+go get -v github.com/davidk/chim
+```
+or for isolated development purposes (so it doesn't blow up your regular GOPATH):
+
+```
+# Clone this into a temporary "GOPATH"
+# EX: 
+$ mkdir -p /dev/shm/chim/src/github.com/davidk/
+$ cd /dev/shm/chim/src/github.com/davidk/
+$ git clone https://github.com/davidk/chim
+$ GOPATH=/dev/shm/chim/src make
+
+```
 
 # Getting Started
 
 1. Create the configuration file above
 
-2. Grab a binary (or build this from source) and place it somewhere on your hosting system. 
+2. Build/grab a binary and place it somewhere on your hosting system. 
 
 ```
 cp chim /usr/local/chim/chim
@@ -85,23 +102,6 @@ Note: `"test_mode": true` will run all filtering, but refuse to actually retweet
 
 Documentation for the options and a working example can be found here: [config.json.md](config.json.md).
 
-# Building/Compiling
-
-```
-go get -v github.com/davidk/chim
-```
-or for isolated development purposes (so it doesn't blow up your regular GOPATH):
-
-```
-# Clone this into a temporary "GOPATH"
-# EX: 
-$ mkdir -p /dev/shm/chim/src/github.com/davidk/
-$ cd /dev/shm/chim/src/github.com/davidk/
-$ git clone https://github.com/davidk/chim
-$ GOPATH=/dev/shm/chim/src make
-
-```
-
 # Deployment
 
 This can be run without the use of supervision scripts/containers if desired.
@@ -112,7 +112,7 @@ Instructions are located in the header of the service file.
 
 # Known Bugs / Desired features
 
-These bugs are known and will be addressed:
+These bugs were known:
 
 * A full restart is required for configuration reloads. Some of it can
 be done on-demand/hot.
@@ -121,6 +121,8 @@ be done on-demand/hot.
   for this isn't well understood, as it rarely happens
 
 ### Desired Features
+
+As this bot was being retired:
 
 * When adding mutes, the bot should re-read the Twitter API on a signal
 
@@ -136,6 +138,10 @@ be done on-demand/hot.
 
 * Quality detection with ML/AI/DL
 
+# Will this bot ever come out of retirement?
+
+Maybe! Porting to the new API implementation seems substantial right now.
+
 # Main libraries and references used to implement this bot
 
 Language: [golang](https://golang.org/)
@@ -145,3 +151,4 @@ Twitter Streaming API: [Twitter Streaming API](https://dev.twitter.com/streaming
 Twitter Library (Anaconda): [Anaconda](https://github.com/ChimeraCoder/anaconda)
 
 LRU (a concurrent-access safe version was made, derived from) [groupcache](https://github.com/golang/groupcache)
+
