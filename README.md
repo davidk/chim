@@ -49,24 +49,22 @@ $ GOPATH=/dev/shm/chim/src make
 
 # Getting Started
 
-1. Create the configuration file above
-
-2. Build/grab a binary and place it somewhere on your hosting system. 
+1. Build/grab a binary and place it somewhere on your hosting system. 
 
 ```
 cp chim /usr/local/chim/chim
 chmod +x /usr/local/chim/chim
 ```
 
-3. Point `chim` to the configuration file (see here for a [basic config](config.json.md))
+2. Point `chim` to the configuration file (see below, or [here, for a basic config](config.json.md))
 
-4. Run `chim -c config.json`
+3. Run `chim -c config.json`
 
-5. The bot should start and enter a listening loop
+4. The bot should start and enter a listening loop
 
-6. Wait for gifs/video clips to appear (based on watched values)
+5. Wait for gifs/video clips to appear (based on watched values) and get checked by the filters
 
-7. Watch them get re-tweeted by the bot if they pass the filters
+6. Watch things get re-tweeted by the bot
 
 # Configuration File
 
@@ -126,7 +124,7 @@ As this bot was being retired:
 
 * When adding mutes, the bot should re-read the Twitter API on a signal
 
-* The logging API is inconsistent between log and logrus (still migrating this)
+* The logging API is inconsistent between log and logrus
 
 * The Prometheus metrics server needs to be more configurable, and possibly shut off in the configuration.
 
