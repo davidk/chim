@@ -31,12 +31,12 @@ func TestCheckForProhibitedMentions(t *testing.T) {
 				User_mentions: []struct {
 					Name        string "json:\"name\""
 					Indices     []int  "json:\"indices\""
-					Screen_name string "json:\"screen_name\""
-					Id          int64  "json:\"id\""
-					Id_str      string "json:\"id_str\""
+					ScreenName string "json:\"screen_name\""
+					ID          int64  "json:\"id\""
+					IDStr      string "json:\"id_str\""
 				}{
-					{Name: "cake", Screen_name: "pie"},
-					{Name: "emdawg", Screen_name: "em"},
+					{Name: "cake", ScreenName: "pie"},
+					{Name: "emdawg", ScreenName: "em"},
 				},
 			},
 		}, prohibitedMentionsTest)
@@ -61,12 +61,12 @@ func TestCheckForProhibitedMentions(t *testing.T) {
 					User_mentions: []struct {
 						Name        string "json:\"name\""
 						Indices     []int  "json:\"indices\""
-						Screen_name string "json:\"screen_name\""
-						Id          int64  "json:\"id\""
-						Id_str      string "json:\"id_str\""
+						ScreenName string "json:\"screen_name\""
+						ID          int64  "json:\"id\""
+						IDStr      string "json:\"id_str\""
 					}{
-						{Name: "pie", Screen_name: "boron"},
-						{Name: "hyper", Screen_name: "iron_man"},
+						{Name: "pie", ScreenName: "boron"},
+						{Name: "hyper", ScreenName: "iron_man"},
 					}, //closes struct
 				}, //closes Entities
 			}, //closes ExtendedTweet
@@ -92,12 +92,12 @@ func TestCheckForProhibitedMentions(t *testing.T) {
 					User_mentions: []struct {
 						Name        string "json:\"name\""
 						Indices     []int  "json:\"indices\""
-						Screen_name string "json:\"screen_name\""
-						Id          int64  "json:\"id\""
-						Id_str      string "json:\"id_str\""
+						ScreenName string "json:\"screen_name\""
+						ID          int64  "json:\"id\""
+						IDStr      string "json:\"id_str\""
 					}{
-						{Name: "pie", Screen_name: "boron"},
-						{Name: "hyper", Screen_name: "iron_man"},
+						{Name: "pie", ScreenName: "boron"},
+						{Name: "hyper", ScreenName: "iron_man"},
 					}, //closes struct
 				}, //closes Entities
 			}, //closes ExtendedTweet

@@ -11,13 +11,15 @@ import (
 // do not call out to the Twitter API. A FriendshipInfo is passed to
 // checkUserFollowing and calls api.GetFriendshipsShow by proxy
 
-// GetMutedIds wraps Anaconda's GetMutedUsersIds for testing
+// GetMutedList wraps Anaconda's GetMutedUsersIds for testing
 type GetMutedList interface {
 	GetMutedUsersList(v url.Values) (c anaconda.UserCursor, err error)
 }
 
+// MutedInfo stubs out Anaconda's information for testing / production
 type MutedInfo struct{}
 
+// GetMutedUsersList passes to Anaconda's GetMutedUsersList()
 func (fs MutedInfo) GetMutedUsersList(v url.Values) (c anaconda.UserCursor, err error) {
 	return api.GetMutedUsersList(v)
 }

@@ -57,10 +57,10 @@ func checkAccountAge(status anaconda.Tweet, minAgeHours int) bool {
 	if timeSinceUserCreated > minAgeDuration {
 		log.Info("checkAccountAge: Account is older than required hours. OK.")
 		return true
-	} else {
-		log.Info("checkAccountAge: Account is NOT older than required hours. FAIL.")
-		return false
 	}
+
+	log.Info("checkAccountAge: Account is NOT older than required hours. FAIL.")
+	return false
 }
 
 // checkDuplicateContent checks a LRU to see if the URL given has already
@@ -83,7 +83,7 @@ func checkDuplicateContent(url string) bool {
 // Return values are:
 // approval       - boolean
 // type of tweet  - string
-func checkTweetContent(status anaconda.Tweet) (approved bool, tweetType string, contentUrl string) {
+func checkTweetContent(status anaconda.Tweet) (approved bool, tweetType string, contentURL string) {
 	log.Debug("Incoming status text:", status.Text)
 	// Tweet must be an original message, .RetweetedStatus is usually correct,
 	// but an RT prefix is also prevalent ("manual retweeting")
@@ -103,19 +103,19 @@ func checkTweetContent(status anaconda.Tweet) (approved bool, tweetType string, 
 		return false, "sensitive", ""
 	}
 
-	if approved, tweetType, contentUrl = checkEntityMedia(status, status.Entities.Media); approved {
+	if approved, tweetType, contentURL = checkEntityMedia(status, status.Entities.Media); approved {
 		return
 	}
 
-	if approved, tweetType, contentUrl = checkEntityMedia(status, status.ExtendedEntities.Media); approved {
+	if approved, tweetType, contentURL = checkEntityMedia(status, status.ExtendedEntities.Media); approved {
 		return
 	}
 
-	if approved, tweetType, contentUrl = checkEntityMedia(status, status.ExtendedTweet.Entities.Media); approved {
+	if approved, tweetType, contentURL = checkEntityMedia(status, status.ExtendedTweet.Entities.Media); approved {
 		return
 	}
 
-	if approved, tweetType, contentUrl = checkEntityMedia(status, status.ExtendedTweet.ExtendedEntities.Media); approved {
+	if approved, tweetType, contentURL = checkEntityMedia(status, status.ExtendedTweet.ExtendedEntities.Media); approved {
 		return
 	}
 
@@ -149,7 +149,7 @@ func checkEntityMedia(status anaconda.Tweet, mediaEntries []anaconda.EntityMedia
 	return false, "", ""
 }
 
-// FriendshipStaus helps to wrap the Anaconda GetFriendshipShow for testing
+// FriendshipStatus helps to wrap the Anaconda GetFriendshipShow for testing
 type FriendshipStatus interface {
 	GetFriendshipStatus(url.Values) (anaconda.RelationshipResponse, error)
 }
@@ -159,6 +159,7 @@ type FriendshipStatus interface {
 // checkUserFollowing and calls api.GetFriendshipsShow by proxy
 type FriendshipInfo struct{}
 
+// GetFriendshipStatus will grab friendships from anaconda's API
 func (fs FriendshipInfo) GetFriendshipStatus(v url.Values) (anaconda.RelationshipResponse, error) {
 	return api.GetFriendshipsShow(v)
 }
@@ -231,13 +232,11 @@ func checkUserFollowing(fs FriendshipStatus, status anaconda.Tweet, targetUser s
 			log.Info("userIsFollowing [mutual mode]: added user to LRU cache (1). User and target are following each other.")
 			return true
 
-		} else {
-
-			tweetOriginatorLRU.Add(status.User.ScreenName, 0)
-			log.Info("userIsFollowing [mutual mode]: Target/Source are not mutually following each other. Rejected.")
-			return false
-
 		}
+
+		tweetOriginatorLRU.Add(status.User.ScreenName, 0)
+		log.Info("userIsFollowing [mutual mode]: Target/Source are not mutually following each other. Rejected.")
+		return false
 
 	} else {
 
@@ -263,6 +262,7 @@ func calculateTweetTime(status *anaconda.Tweet, timeDeltaSeconds int) (time.Time
 	return createdTime, deltaDuration
 }
 
+// ContentDelta contains the User and a ContentType for embedding in an LRU
 type ContentDelta struct {
 	User        int64
 	ContentType string

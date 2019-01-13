@@ -104,15 +104,17 @@ type InternalTuning struct {
 	TwitterFilterLevel string `json:"twitter_filter_level"`
 }
 
-// Interfaces used to switch between production and testing environments
+// ErrorInterface is used to switch between production and testing environments
 // chim_test.go has its own interfaces to Fatal which do not trigger
 // an application crash
 type ErrorInterface interface {
 	Fatal(format string, v ...interface{})
 }
 
+// ErrorsAreFatal plugs into functions to make errors fatal in production
 type ErrorsAreFatal struct{}
 
+// Fatal transfers control to log.Fatal in production settings
 func (fs ErrorsAreFatal) Fatal(format string, v ...interface{}) {
 	log.Fatal(format, v)
 }
@@ -254,19 +256,22 @@ func ConfigureApp(errorType ErrorInterface) {
 
 }
 
-// .Retweet and .GetUsersLookup interfaces for production
-type ApiInterface interface {
+// APIInterface -- .Retweet and .GetUsersLookup interfaces for production
+type APIInterface interface {
 	Retweet(id int64, trimUser bool) (rt anaconda.Tweet, err error)
 	GetUsersLookup(usernames string, v url.Values) (u []anaconda.User, err error)
 }
 
-type ApiAccess struct{}
+// APIAccess passes control to Anaconda in production
+type APIAccess struct{}
 
-func (fs ApiAccess) Retweet(id int64, trimUser bool) (rt anaconda.Tweet, err error) {
+// Retweet passes control to Anaconda's Retweet()
+func (fs APIAccess) Retweet(id int64, trimUser bool) (rt anaconda.Tweet, err error) {
 	return api.Retweet(id, trimUser)
 }
 
-func (fs ApiAccess) GetUsersLookup(usernames string, v url.Values) (u []anaconda.User, err error) {
+// GetUsersLookup passes to Anaconda's GetUsersLookup()
+func (fs APIAccess) GetUsersLookup(usernames string, v url.Values) (u []anaconda.User, err error) {
 	return api.GetUsersLookup(usernames, v)
 }
 
@@ -274,7 +279,7 @@ func (fs ApiAccess) GetUsersLookup(usernames string, v url.Values) (u []anaconda
 // other steps before actually retweeting. Intended to be
 // called via goroutine so we can do many re-tweets under
 // processing load
-func processTweet(a ApiInterface, fs FriendshipStatus, status anaconda.Tweet) bool {
+func processTweet(a APIInterface, fs FriendshipStatus, status anaconda.Tweet) bool {
 	tweetLog := log.WithFields(log.Fields{"statusId": status.Id, "statusText": status.Text})
 
 	tweetsProcessed.WithLabelValues("tweetsSeen", "count").Add(1)
@@ -284,9 +289,9 @@ func processTweet(a ApiInterface, fs FriendshipStatus, status anaconda.Tweet) bo
 	if !approved {
 		tweetsProcessed.WithLabelValues("checkTweetContentReject", "reject").Add(1)
 		return false
-	} else {
-		log.Printf("type: %v | content: %v | filter_level: %v", tweetType, tweetContent, status.FilterLevel)
 	}
+
+	log.Printf("type: %v | content: %v | filter_level: %v", tweetType, tweetContent, status.FilterLevel)
 
 	// Check prohibited mention(s) for this tweet
 	if checkForProhibitedMentions(status, prohibitedMentions) == false {
@@ -372,7 +377,7 @@ func processTweet(a ApiInterface, fs FriendshipStatus, status anaconda.Tweet) bo
 }
 
 // buildSearchTerms configures strings to be sent to the Twitter API
-func buildSearchTerms(a ApiInterface, searchTerms string, watchUsers string) url.Values {
+func buildSearchTerms(a APIInterface, searchTerms string, watchUsers string) url.Values {
 	values := url.Values{}
 
 	values.Set("stall_warnings", "true")
@@ -408,7 +413,7 @@ func runPublicStreamFilter() {
 	log.Println("Started listening for events ..")
 	log.Println(" ************ PublicStreamFilter ************ ")
 
-	stream := api.PublicStreamFilter(buildSearchTerms(ApiAccess{}, config.SearchTerms, config.WatchUsers))
+	stream := api.PublicStreamFilter(buildSearchTerms(APIAccess{}, config.SearchTerms, config.WatchUsers))
 
 	// Enter listening loop. Use select to wait on multiple channels.
 	for {
@@ -417,7 +422,7 @@ func runPublicStreamFilter() {
 			switch status := item.(type) {
 			case anaconda.Tweet:
 				// Drop into a goroutine for this tweet and move onto the next tweet
-				go processTweet(ApiAccess{}, FriendshipInfo{}, status)
+				go processTweet(APIAccess{}, FriendshipInfo{}, status)
 				log.WithFields(log.Fields{
 					"screenName": status.User.ScreenName,
 					"text":       status.Text}).Debug("Processing")

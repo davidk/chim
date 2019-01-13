@@ -310,17 +310,17 @@ func TestCheckTweetContent(t *testing.T) {
 					// http://comments.gmane.org/gmane.comp.lang.go.general/95405
 					Urls: []struct {
 						Indices      []int  "json:\"indices\""
-						Url          string "json:\"url\""
-						Display_url  string "json:\"display_url\""
-						Expanded_url string "json:\"expanded_url\""
+						URL          string "json:\"url\""
+						DisplayURL  string "json:\"display_url\""
+						ExpandedURL string "json:\"expanded_url\""
 					}{
-						{Expanded_url: "https://example.com/"},
+						{ExpandedURL: "https://example.com/"},
 					},
 					Media: []anaconda.EntityMedia{
 						{Type: "animated_gif",
 							VideoInfo: anaconda.VideoInfo{
 								Variants: []anaconda.Variant{
-									{Url: "example.com"},
+									{URL: "example.com"},
 								},
 							},
 						},
@@ -358,10 +358,10 @@ func TestCheckTweetContent(t *testing.T) {
 					// http://comments.gmane.org/gmane.comp.lang.go.general/95405
 					Urls: []struct {
 						Indices      []int  "json:\"indices\""
-						Url          string "json:\"url\""
-						Display_url  string "json:\"display_url\""
-						Expanded_url string "json:\"expanded_url\""
-					}{{Expanded_url: "https://google.com"}},
+						URL          string "json:\"url\""
+						DisplayURL  string "json:\"display_url\""
+						ExpandedURL string "json:\"expanded_url\""
+					}{{ExpandedURL: "https://google.com"}},
 				},
 			}, // end anaconda.Tweet
 			false,
@@ -375,7 +375,7 @@ func TestCheckTweetContent(t *testing.T) {
 						{Type: "animated_gif",
 							VideoInfo: anaconda.VideoInfo{
 								Variants: []anaconda.Variant{
-									{Url: "example.com"},
+									{URL: "example.com"},
 								},
 							},
 						},
@@ -394,7 +394,7 @@ func TestCheckTweetContent(t *testing.T) {
 							Type: "video",
 							VideoInfo: anaconda.VideoInfo{
 								Variants: []anaconda.Variant{
-									{Url: "example.com"},
+									{URL: "example.com"},
 								},
 							},
 						},

@@ -79,17 +79,17 @@ func TestCheckRetweetErrors(t *testing.T) {
 }
 
 // for processTweet
-type FakeApiRetweet struct {
+type FakeAPIRetweet struct {
 	Response anaconda.Tweet
 	Error    error
 }
 
 // for processTweet
-func (fs FakeApiRetweet) Retweet(id int64, trimUser bool) (rt anaconda.Tweet, err error) {
+func (fs FakeAPIRetweet) Retweet(id int64, trimUser bool) (rt anaconda.Tweet, err error) {
 	return anaconda.Tweet{}, nil
 }
 
-func (fs FakeApiRetweet) GetUsersLookup(usernames string, v url.Values) (u []anaconda.User, err error) {
+func (fs FakeAPIRetweet) GetUsersLookup(usernames string, v url.Values) (u []anaconda.User, err error) {
 	return []anaconda.User{{Id: 12345}, {Id: 6789}, {Id: 101112131415}}, nil
 }
 
@@ -163,7 +163,7 @@ func TestBuildSearchTerms(t *testing.T) {
 	searchTerms := "cake,fluffy1,fluffy2,fluffy3,fluffy4"
 	followTerms := "12345,6789,101112131415"
 
-	values := buildSearchTerms(FakeApiRetweet{}, searchTerms, followTerms)
+	values := buildSearchTerms(FakeAPIRetweet{}, searchTerms, followTerms)
 
 	if !strings.EqualFold(values.Get("track"), searchTerms) {
 		t.Errorf("List of terms to track is not correct. %v == %v", searchTerms, values.Get("track"))
@@ -229,7 +229,7 @@ func TestProcessTweet(t *testing.T) {
 	}
 
 	for _, testInput := range testProcessTweet {
-		result := processTweet(FakeApiRetweet{}, FakeFriendshipInfo{}, testInput.Tweet)
+		result := processTweet(FakeAPIRetweet{}, FakeFriendshipInfo{}, testInput.Tweet)
 		if result != testInput.Output {
 			t.Error(
 				"Tried: ", testInput.Explain,
