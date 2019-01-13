@@ -309,8 +309,8 @@ func TestCheckTweetContent(t *testing.T) {
 					// named. See golang-nuts here:
 					// http://comments.gmane.org/gmane.comp.lang.go.general/95405
 					Urls: []struct {
-						Indices      []int  "json:\"indices\""
-						URL          string "json:\"url\""
+						Indices     []int  "json:\"indices\""
+						URL         string "json:\"url\""
 						DisplayURL  string "json:\"display_url\""
 						ExpandedURL string "json:\"expanded_url\""
 					}{
@@ -357,8 +357,8 @@ func TestCheckTweetContent(t *testing.T) {
 					// named. See golang-nuts here:
 					// http://comments.gmane.org/gmane.comp.lang.go.general/95405
 					Urls: []struct {
-						Indices      []int  "json:\"indices\""
-						URL          string "json:\"url\""
+						Indices     []int  "json:\"indices\""
+						URL         string "json:\"url\""
 						DisplayURL  string "json:\"display_url\""
 						ExpandedURL string "json:\"expanded_url\""
 					}{{ExpandedURL: "https://google.com"}},

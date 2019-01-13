@@ -29,10 +29,10 @@ func TestCheckForProhibitedMentions(t *testing.T) {
 				CreatedAt:  "Wed Aug 27 13:08:45 +0000 2008"},
 			Entities: anaconda.Entities{
 				User_mentions: []struct {
-					Name        string "json:\"name\""
-					Indices     []int  "json:\"indices\""
+					Name       string "json:\"name\""
+					Indices    []int  "json:\"indices\""
 					ScreenName string "json:\"screen_name\""
-					ID          int64  "json:\"id\""
+					ID         int64  "json:\"id\""
 					IDStr      string "json:\"id_str\""
 				}{
 					{Name: "cake", ScreenName: "pie"},
@@ -59,10 +59,10 @@ func TestCheckForProhibitedMentions(t *testing.T) {
 			ExtendedTweet: anaconda.ExtendedTweet{
 				ExtendedEntities: anaconda.Entities{
 					User_mentions: []struct {
-						Name        string "json:\"name\""
-						Indices     []int  "json:\"indices\""
+						Name       string "json:\"name\""
+						Indices    []int  "json:\"indices\""
 						ScreenName string "json:\"screen_name\""
-						ID          int64  "json:\"id\""
+						ID         int64  "json:\"id\""
 						IDStr      string "json:\"id_str\""
 					}{
 						{Name: "pie", ScreenName: "boron"},
@@ -90,10 +90,10 @@ func TestCheckForProhibitedMentions(t *testing.T) {
 			ExtendedTweet: anaconda.ExtendedTweet{
 				ExtendedEntities: anaconda.Entities{
 					User_mentions: []struct {
-						Name        string "json:\"name\""
-						Indices     []int  "json:\"indices\""
+						Name       string "json:\"name\""
+						Indices    []int  "json:\"indices\""
 						ScreenName string "json:\"screen_name\""
-						ID          int64  "json:\"id\""
+						ID         int64  "json:\"id\""
 						IDStr      string "json:\"id_str\""
 					}{
 						{Name: "pie", ScreenName: "boron"},

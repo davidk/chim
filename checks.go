@@ -195,9 +195,6 @@ func checkUserFollowing(fs FriendshipStatus, status anaconda.Tweet, targetUser s
 	} else if val == 0 {
 		log.Info("userIsFollowing: LRU cache hit.")
 		return false
-	} else {
-		// unknown val state
-		return false
 	}
 
 	log.Println("userIsFollowing: Performing live check.")
