@@ -3,8 +3,8 @@ package main
 import (
 	"errors"
 	"github.com/ChimeraCoder/anaconda"
-	"github.com/davidk/memberset"
 	"github.com/davidk/lru"
+	"github.com/davidk/memberset"
 	"net/url"
 	"strings"
 	"testing"

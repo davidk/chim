@@ -11,7 +11,7 @@ import (
 )
 
 // filterMentions ingests all the mentions parsed by Twitter and
-// checks them agains a set for membership. Tweets fail this test
+// checks them against a set for membership. Tweets fail this test
 // if they are in the set.
 func checkForProhibitedMentions(status anaconda.Tweet, filteredMentions *memberset.MemberSet) bool {
 
@@ -39,7 +39,7 @@ func checkForProhibitedMentions(status anaconda.Tweet, filteredMentions *members
 }
 
 // filterText loosely checks the text's words for anything that might
-// not be entirely permissable.
+// not be entirely permissible.
 // True  -- is passing for this test
 // False -- means that a prohibited word was found
 func checkForProhibitedWords(status anaconda.Tweet, filteredWords *memberset.MemberSet) bool {

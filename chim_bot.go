@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"flag"
 	"github.com/ChimeraCoder/anaconda"
-	"github.com/davidk/memberset"
 	"github.com/davidk/lru"
+	"github.com/davidk/memberset"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	log "github.com/sirupsen/logrus"
@@ -423,7 +423,7 @@ func runPublicStreamFilter() {
 					"text":       status.Text}).Debug("Processing")
 				tweetsProcessed.WithLabelValues("total", "").Add(1)
 			case anaconda.StallWarning:
-				log.Warn("*** [WARNING] Processing latency. Queue at remote Twitter sender is %v full. ***", status.PercentFull)
+				log.Warn("[WARNING] Processing latency. Queue at remote Twitter sender is full: ", status.PercentFull, "%")
 			}
 		}
 	}

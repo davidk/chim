@@ -278,7 +278,7 @@ func TestCheckUserPostDelta(t *testing.T) {
 
 }
 
-func TestcheckTweetContent(t *testing.T) {
+func TestCheckTweetContent(t *testing.T) {
 
 	config = AppConfiguration{
 		Settings: InternalTuning{
@@ -612,11 +612,11 @@ func TestUserIsMuted(t *testing.T) {
 	}
 
 	if ok := userIsMuted(0000, testIds); ok {
-		t.Error("Muted non-existant user not placed in set.")
+		t.Error("Muted non-existent user not placed in set.")
 	}
 
 	if ok := userIsMuted(int64(0000), testIds); ok {
-		t.Error("Muted non-existant user not placed in set.")
+		t.Error("Muted non-existent user not placed in set.")
 	}
 
 }
