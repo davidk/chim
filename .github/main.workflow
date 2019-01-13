@@ -11,13 +11,13 @@ action "login" {
 action "build" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
   needs = ["login"]
-  args = "build -t keyglitch/chim ."
+  args = "build -t chim ."
 }
 
 action "tag" {
   uses = "actions/docker/tag@master"
   needs = ["build"]
-  args = "keyglitch/chim keyglitch/chim:$GITHUB_SHA"
+  args = "-l -s chim keyglitch/chim"
 }
 
 action "push" {
