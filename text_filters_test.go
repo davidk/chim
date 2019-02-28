@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/ChimeraCoder/anaconda"
+	"github.com/davidk/anaconda"
 	"github.com/davidk/memberset"
 	"testing"
 )
@@ -29,14 +29,14 @@ func TestCheckForProhibitedMentions(t *testing.T) {
 				CreatedAt:  "Wed Aug 27 13:08:45 +0000 2008"},
 			Entities: anaconda.Entities{
 				User_mentions: []struct {
-					Name       string "json:\"name\""
-					Indices    []int  "json:\"indices\""
-					ScreenName string "json:\"screen_name\""
-					ID         int64  "json:\"id\""
-					IDStr      string "json:\"id_str\""
+					Name       string
+					Indices    []int
+					Screen_name string
+					Id         int64  
+					Id_str      string
 				}{
-					{Name: "cake", ScreenName: "pie"},
-					{Name: "emdawg", ScreenName: "em"},
+					{Name: "cake", Screen_name: "pie"},
+					{Name: "emdawg", Screen_name: "em"},
 				},
 			},
 		}, prohibitedMentionsTest)
@@ -59,14 +59,14 @@ func TestCheckForProhibitedMentions(t *testing.T) {
 			ExtendedTweet: anaconda.ExtendedTweet{
 				ExtendedEntities: anaconda.Entities{
 					User_mentions: []struct {
-						Name       string "json:\"name\""
-						Indices    []int  "json:\"indices\""
-						ScreenName string "json:\"screen_name\""
-						ID         int64  "json:\"id\""
-						IDStr      string "json:\"id_str\""
+					Name       string
+					Indices    []int
+					Screen_name string
+					Id         int64  
+					Id_str      string
 					}{
-						{Name: "pie", ScreenName: "boron"},
-						{Name: "hyper", ScreenName: "iron_man"},
+						{Name: "pie", Screen_name: "boron"},
+						{Name: "hyper", Screen_name: "iron_man"},
 					}, //closes struct
 				}, //closes Entities
 			}, //closes ExtendedTweet
@@ -90,14 +90,14 @@ func TestCheckForProhibitedMentions(t *testing.T) {
 			ExtendedTweet: anaconda.ExtendedTweet{
 				ExtendedEntities: anaconda.Entities{
 					User_mentions: []struct {
-						Name       string "json:\"name\""
-						Indices    []int  "json:\"indices\""
-						ScreenName string "json:\"screen_name\""
-						ID         int64  "json:\"id\""
-						IDStr      string "json:\"id_str\""
+					Name       string
+					Indices    []int
+					Screen_name string
+					Id         int64  
+					Id_str      string
 					}{
-						{Name: "pie", ScreenName: "boron"},
-						{Name: "hyper", ScreenName: "iron_man"},
+						{Name: "pie", Screen_name: "boron"},
+						{Name: "hyper", Screen_name: "iron_man"},
 					}, //closes struct
 				}, //closes Entities
 			}, //closes ExtendedTweet
