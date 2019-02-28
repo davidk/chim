@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/ChimeraCoder/anaconda"
+	"github.com/davidk/anaconda"
 	"github.com/davidk/memberset"
 	"net/url"
 	"strings"
@@ -309,18 +309,18 @@ func TestCheckTweetContent(t *testing.T) {
 					// named. See golang-nuts here:
 					// http://comments.gmane.org/gmane.comp.lang.go.general/95405
 					Urls: []struct {
-						Indices     []int  "json:\"indices\""
-						URL         string "json:\"url\""
-						DisplayURL  string "json:\"display_url\""
-						ExpandedURL string "json:\"expanded_url\""
+						Indices      []int  
+						Url          string 
+						Display_url  string 
+						Expanded_url string 
 					}{
-						{ExpandedURL: "https://example.com/"},
+						{Expanded_url: "https://example.com/"},
 					},
 					Media: []anaconda.EntityMedia{
 						{Type: "animated_gif",
 							VideoInfo: anaconda.VideoInfo{
 								Variants: []anaconda.Variant{
-									{URL: "example.com"},
+									{Url: "example.com"},
 								},
 							},
 						},
@@ -357,11 +357,11 @@ func TestCheckTweetContent(t *testing.T) {
 					// named. See golang-nuts here:
 					// http://comments.gmane.org/gmane.comp.lang.go.general/95405
 					Urls: []struct {
-						Indices     []int  "json:\"indices\""
-						URL         string "json:\"url\""
-						DisplayURL  string "json:\"display_url\""
-						ExpandedURL string "json:\"expanded_url\""
-					}{{ExpandedURL: "https://google.com"}},
+						Indices      []int
+						Url          string
+						Display_url  string
+						Expanded_url string
+					}{{Expanded_url: "https://google.com"}},
 				},
 			}, // end anaconda.Tweet
 			false,
@@ -375,7 +375,7 @@ func TestCheckTweetContent(t *testing.T) {
 						{Type: "animated_gif",
 							VideoInfo: anaconda.VideoInfo{
 								Variants: []anaconda.Variant{
-									{URL: "example.com"},
+									{Url: "example.com"},
 								},
 							},
 						},
@@ -394,7 +394,7 @@ func TestCheckTweetContent(t *testing.T) {
 							Type: "video",
 							VideoInfo: anaconda.VideoInfo{
 								Variants: []anaconda.Variant{
-									{URL: "example.com"},
+									{Url: "example.com"},
 								},
 							},
 						},
