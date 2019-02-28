@@ -3,7 +3,7 @@
 package main
 
 import (
-	"github.com/ChimeraCoder/anaconda"
+	"github.com/davidk/anaconda"
 	"github.com/davidk/memberset"
 	log "github.com/sirupsen/logrus"
 	"net/url"
@@ -273,7 +273,6 @@ func checkContentDelta(user int64, username string, contentType string,
 	log.Infof("checkContentDelta: Checking content delta for user %v. Content delta is set to %v. Content type: %v", user, timeDeltaSeconds, contentType)
 
 	currentTime, deltaDuration := calculateTweetTime(status, timeDeltaSeconds)
-
 	val, present := userContentDeltaLRU.Get(ContentDelta{user, contentType})
 
 	if !present {

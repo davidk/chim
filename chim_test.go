@@ -2,7 +2,7 @@ package main
 
 import (
 	"errors"
-	"github.com/ChimeraCoder/anaconda"
+	"github.com/davidk/anaconda"
 	"github.com/davidk/lru"
 	"github.com/davidk/memberset"
 	"net/url"

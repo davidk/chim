@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"flag"
-	"github.com/ChimeraCoder/anaconda"
+	"github.com/davidk/anaconda"
 	"github.com/davidk/lru"
 	"github.com/davidk/memberset"
 	"github.com/prometheus/client_golang/prometheus"

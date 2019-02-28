@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/ChimeraCoder/anaconda"
+	"github.com/davidk/anaconda"
 	"github.com/davidk/memberset"
 	log "github.com/sirupsen/logrus"
 	"net/url"
