@@ -1,6 +1,6 @@
 # Chim
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/davidk/chim)](https://goreportcard.com/report/github.com/davidk/chim)
+[![Go Report Card](https://goreportcard.com/badge/github.com/davidk/chim)](https://goreportcard.com/report/github.com/davidk/chim) [![Docker hub pulls](https://img.shields.io/docker/pulls/keyglitch/chim.svg?style=plastic)](https://hub.docker.com/r/keyglitch/chim)
 
 This was a Golang-based Twitter bot designed for re-tweeting gifs and videos out of twitter's streaming API, given a set of search terms and hashtags. It was mostly used for quickly collecting/centralizing/archiving community gif/video clippings and contributions onto one account.
 
