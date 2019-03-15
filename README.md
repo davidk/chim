@@ -4,7 +4,7 @@
 
 This was a Golang-based Twitter bot designed for re-tweeting gifs and videos out of twitter's streaming API, given a set of search terms and hashtags. It was mostly used for quickly collecting/centralizing/archiving community gif/video clippings and contributions onto one account.
 
-As of this bot's public release, it has been in quiet, near-continous operation for over two years; re-tweeting videos and gifs over 9,000 times.
+As of this bot's public release, it has been in quiet, near-continous operation for over two years; re-tweeting videos and gifs over 10,000 times.
 
 The Twitter API this bot uses is slowly degrading into shutdown, so i'm releasing this for the Internet to archive, and for my own future reference (there are useful parts, still).
 
