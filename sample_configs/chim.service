@@ -1,12 +1,16 @@
-# Installation (as root):
-# mkdir -p /usr/local/chim/
-# cp chim /usr/local/chim
-# cp config.json /usr/local/chim
-# cp chim.service /etc/systemd/system/
-# chmod 664 /etc/systemd/system/chim.service
-# systemctl daemon-reload
-# systemctl enable chim.service
-# systemctl start chim.service
+# Installation notes for this systemd service file
+# * Create a separate user (using `adduser`, etc)
+# * Change User=pi to the user that chim will run under 
+# 
+# $ mkdir -p /usr/local/chim/
+# $ cp chim /usr/local/chim
+# $ cp config.json /usr/local/chim
+# $ cp chim.service /etc/systemd/system/
+# $ chmod 664 /etc/systemd/system/chim.service
+# $ chown -R pi /usr/local/chim
+# $ systemctl daemon-reload
+# $ systemctl enable chim.service
+# $ systemctl start chim.service
 
 # To get STDOUT/IN data, run the following:
 # sudo journalctl -u chim
